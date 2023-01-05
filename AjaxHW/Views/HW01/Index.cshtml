@@ -1,0 +1,41 @@
+﻿<h1 id="tt">Hw01</h1>
+
+<div id="dd" class="row">
+</div>
+
+
+@section Styles{
+<style>
+
+</style>
+}
+@section Scripts
+{
+<script src="~/js/travel.js"></script>
+<script>
+
+    const dd = document.querySelector("#dd");
+    const tt = document.querySelector("#tt");
+    for (var item of DATAS) {
+            var str = ` <div class="card" style = "width: 18rem;" id = "dd" >`;
+            str += `<div class="card-body">`;
+            str += `<h5 class="card-title">${item.InfoId}</h5>`;
+            str += `<h6 class="card-subtitle mb-2 text-muted">${item.Name}</h6>`;
+            str += `<p class="card-text">${item.Toldescribe}</p>`;
+            str += `<a href="${item.Website}" class="card-link">網址</a>`;
+            str += `</div>`;
+            str += `</div>`;
+        $(`#dd`).append(str)
+        // var str = ` <div class="card" style = "width: 18rem;" id = "dd" >`;
+        //str += `<div class="card-body">`;
+        //str += `<h5 class="card-title">${item.InfoId}</h5>`;
+        //str += `<h6 class="card-subtitle mb-2 text-muted">${item.Name}</h6>`;
+        //str +=`<p class="card-text">${item.Toldescribe}</p>`;
+        //str += `<a href="${item.Website}" class="card-link">網址</a>`;
+        //str +=`</div>`;
+        //str += `</div>`;
+
+        //dd.innerHTML+=str;
+    }
+</script>
+}
