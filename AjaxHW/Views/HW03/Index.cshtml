@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<h1>Address</h1>
+<select id="select1"></select>
+<select id="select2"></select>
+<select id="select3"></select>
+@section Scripts
+{
+    <script>
+        const sel = document.querySelector("#select1");
+        const site = document.querySelector("#select2");
+        const road = document.querySelector("#select3");
+        sel.addEventListener('change',()=>{
+            selSite();
+        })
+        site.addEventListener('change',()=>{
+            selRoad();
+        })
+        selCity();
+        
+        
+        async function selCity()
+        {
+            const data = await fetch("@Url.Content("~/HW03/City")")
+            const selcity = await data.json();
+            var selopts= selcity.map(value=>{
+            return (`<option value=${value.city}>${value.city}</option>`);
+            });
+            sel.innerHTML=selopts;
+            selSite();
+        }
+        async function selSite()
+        {
+            const data = await fetch(`@Url.Content("~/HW03/Site?city=${sel.value}")`);
+            const selsite = await data.json();
+            var selopts= selsite.map(value=>{
+                
+                return (`<option value=${value}>${value}</option>`)
+            });
+            site.innerHTML=selopts;
+            selRoad();
+        }
+        async function selRoad() {
+
+            const data = await fetch(`@Url.Content("~/HW03/Road?site=${site.value}")`);
+            const selroad = await data.json();
+            var selopts = selroad.map(value => {
+
+                return (`<option value=${value}>${value}</option>`)
+            });
+            road.innerHTML = selopts;
+        }
+
+
+
+
+    </script>
+
+}
